@@ -19,20 +19,24 @@ def get_supervisors():
   response = requests.get("https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers")
   parsed_data = response.json()
   outputList = []
-  print(type(parsed_data))  
+  sortedList = []
+  #Pull relevant information from JSON
   for activeLine in parsed_data:
     jurisdiction = activeLine['jurisdiction']
     #Numeric jurisdictions should be excluded from the response
     if not jurisdiction.isdigit():
-      lastName = activeLine['lastName']
-      firstName = activeLine['firstName'] 
-      entry = [jurisdiction, activeLine['lastName'], activeLine['firstName']]
       # https://sparkbyexamples.com/python/create-list-of-lists-in-python/#:~:text=To%20create%20a%20list%20of%20lists%20in%20Python%2C%20you%20can,pop()%20%2C%20and%20del%20statement.
-      outputList.append(entry)
-
+      entry = [jurisdiction, activeLine['lastName'], activeLine['firstName']]
+      sortedList.append(entry)
+  
+  #Sort Output
   #https://sparkbyexamples.com/python/python-sort-list-of-lists/
-  outputList = sorted(outputList, key=itemgetter(1, 2))
+  sortedList = sorted(sortedList, key=itemgetter(1, 2))
+  for activeLine in sortedList:
+    outputList.append(activeLine[0] + " - " + activeLine[1] + ", " + activeLine[2])
+
   return(outputList)
+  # return(parsed_data)
 
 
 @app.route("/api/postSupervisors", methods=['POST'])
