@@ -1,8 +1,9 @@
-#!/bin/python
-
 from flask import Flask,request,jsonify
 from urllib.request import urlopen
 import json
+import requests
+
+
 
 app = Flask(__name__)
 
@@ -13,20 +14,35 @@ def sayHello():
 
 @app.route("/api/getSupervisors", methods=['GET'])
 def get_supervisors():
-  url = "https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers"
-  """response = json.loads(request.gett("GET",url).text)"""
-  response = urlopen(url)
-  """return response"""
-  """Single line: {"id":"1","phone":"204-798-9969","jurisdiction":"u","identificationNumber":"d4900a18-a304-42c6-a8e5-a6c8c3f17bc0","firstName":"Karson","lastName":"Olson"}"""
-  data_json = json.loads(response.read())
-  print(type(data_json))
+  #https://bobbyhadz.com/blog/python-typeerror-the-json-object-must-be-str-bytes-or-bytearray-not-dict#the-json-object-must-be-str-bytes-or-bytearray-not-response000
+  response = requests.get("https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers")
+  parsed_data = response.json()
+  outputDictionary = {}
+  #Go through each value in parsed_data
+  for x in parsed_data:
+    activeLine = (parsed_data[x])
+    jurisdiction = activeLine['id']
+    lastName = activeLine['lastName']
+    firstName = activeLine['firstName'] 
+
+  return(lastIndex)
+  # return(parsed_data)
+
+
+  # response = urlopen("https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers")
+  # decoded_reponse = response.read().decode(response)
+  # supervisors = json.loads(decoded_response)
+  # # id = supervisors[1]
+  # print(supervisors)
+  # return()
+
+
+
+@app.route("/api/postSupervisors", methods=['POST'])
+def post_supervisors():
+  data = request.get_json()
   return()
- 
- 
- 
-  """JAIL
-  print(data_json)
-  """
+
 
 if __name__ == "__main__":
   app.run()
