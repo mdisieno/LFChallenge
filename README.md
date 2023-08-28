@@ -1,35 +1,14 @@
 # Overview
-This template provides a very basic Flask application. This is intended to provide a bare minimum set of files that is executable, and can be compiled into a functional docker image.
+Hello, I am Michael Disieno and this is my submission for the LightFeather Backend Engineer Coding Challenge
 
-# Running locally with pip and flask
-This project has been tested with python 3.
-```
-pip install -r requirements.txt
-flask run
-```
+# To test the get call
+Please go to the respective ip/url the host machine provides with the respective port provided in the console. 
+Please append either "/api/getSupervisors" or /api/postSupervisors" to the end. If you forget, the base url will remind you.
 
-# Running with docker
-To help ensure consistently correct startup across multiple platforms, you may choose to use Docker to containerize your application.  Installation steps for docker can be found on their main page.
-https://docs.docker.com/engine/install/
-
-With Docker installed, you can build your a new image. This build needs to be run after any changes are made to the source code.
+Example:
 ```
-docker build --tag=flask-template:latest .
-```
-
-After the image builds successfully, run a container from that image.
-```
-docker run -d --name flask-template -p5000:5000 flask-template:latest
-```
-
-Test the container has successfully started.
-```
-curl localhost:5000/
-```
-
-When you are done testing, stop the server and remove the container.
-```
-docker rm -f flask-template
+http://localhost:5000/api/getSupervisors
+http://192.168.5.300:5000/api/postSupervisors
 ```
 
 # Running with docker-compose
