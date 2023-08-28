@@ -10,7 +10,6 @@ app = Flask(__name__)
 def sayHello():
   return "Hello! I'm Mike. To get the supervisors, please use /api/getSupervisors. To post, please use /api/postSupervisor"
 
-
 @app.route("/api/getSupervisors", methods=['GET'])
 def get_supervisors():
   response = requests.get("https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers") # Pull down list of managers
@@ -28,7 +27,6 @@ def get_supervisors():
   for activeLine in sortedList:
     outputList.append(activeLine[0] + " - " + activeLine[1] + ", " + activeLine[2]) # "jurisdiction - lastName, firstName"
   return(outputList)
-
 
 @app.route("/api/postSupervisors", methods=['POST','GET'])
 def post_supervisors():
