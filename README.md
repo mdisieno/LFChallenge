@@ -1,7 +1,7 @@
 # Overview
 Hello, I am Michael Disieno and this is my submission for the LightFeather Backend Engineer Coding Challenge
 
-# To test the get call
+# To utilize the API functionality
 Please go to the respective ip/url the host machine provides with the respective port provided in the console. 
 Please append either "/api/getSupervisors" or /api/postSupervisors" to the end. If you forget, the base url will remind you.
 
