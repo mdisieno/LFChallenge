@@ -1,7 +1,5 @@
 from flask import Flask,request,url_for,redirect,render_template
-from urllib.request import urlopen
 from operator import itemgetter
-# import json
 import requests
 
 
@@ -28,7 +26,7 @@ def get_supervisors():
   #Sort Output
   sortedList = sorted(sortedList, key=itemgetter(0, 1, 2)) # Sorted in alphabetic order by jurisdiction, lastName, firstName
   for activeLine in sortedList:
-    outputList.append(activeLine[0] + " - " + activeLine[1] + ", " + activeLine[2]) # "jurisdiction = lastName, firstName"
+    outputList.append(activeLine[0] + " - " + activeLine[1] + ", " + activeLine[2]) # "jurisdiction - lastName, firstName"
   return(outputList)
 
 
